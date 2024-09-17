@@ -8,6 +8,7 @@ const recipeRoutes = require('./routes/recipes');
 const favoriteRoutes = require('./routes/favorites');
 const dotenv = require('dotenv').config();
 const auth = require('./middleware/auth');
+const cors = require("cors")
 
 //CONNECT TO DATABASE
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/auth', require('./routes/auth'));
 app.use('/recipes', auth, require('./routes/recipes'));
 app.use('/favorites', auth, require('./routes/favorites'));
+app.use(cors())
 
 app.use((err, req, res, next) => {
    console.error(err);
